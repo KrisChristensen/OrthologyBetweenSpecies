@@ -23,7 +23,7 @@ Files: Both genome fasta files, both set of protein sequences for entire genome 
 <!-- usage -->
 ## Usage
 
-1) Align genomes of closely related species.  This was done using blast for this pipeline (hopefully future versions will include quicker software solution).
+1) Align genomes of closely related species.  This was done using blast for this pipeline (hopefully future versions will include a quicker software solution).
 
        Example (for closely related species): 
        blastn -task megablast -db genome1 -query genome2.fasta -evalue 0.000001 -max_target_seqs 3 -max_hsps 20000 -outfmt 6 -word_size 40\
