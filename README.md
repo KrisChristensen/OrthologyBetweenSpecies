@@ -16,20 +16,20 @@ A method to identify orthologous and syntenic genes between closely related spec
 
 These scripts have been tested with Python 2.7 and will not work with later versions unless they are modified.
 
-These scripts work with alignments from blast (blast format 6 is required).  We assume the user has already generated blast databases below.  Please see blast documentation for further details and for an explanation of command line options used below.
+These scripts work with homology searches from blast (blast format 6 is required).  We assume the user has already generated blast databases below.  Please see blast documentation for further details and for an explanation of command line options used below.
 
-Files: Both genome fasta files, both set of protein sequences for entire genome in fasta format, and both .gff files for the genomes, samtools faidx indexes of both genomes (.fai)
+Files: Both genome fasta files, both sets of protein sequences for entire genome in fasta format, and both .gff files for the genomes, samtools faidx indexes of both genomes (.fai)
 
 <!-- usage -->
 ## Usage
 
-1) Align genomes of closely related species.  This was done using blast for this pipeline (hopefully future versions will include a quicker software solution).
+1) Homology searches of genomes of closely related species.  This was done using blast for this pipeline (hopefully future versions will include a quicker software solution).
 
        Example (for closely related species): 
        blastn -task megablast -db genome1 -query genome2.fasta -evalue 0.000001 -max_target_seqs 3 -max_hsps 20000 -outfmt 6 -word_size 40\
        -perc_identity 96 -lcase_masking -soft_masking false -num_threads 10 -out genome1_vs_genome2.aln
        
-2) Filter non-linear global alignments
+2) Filter non-linear global homology searches
 
        Note: Requires the python script Linear_Alignments_v1_2.py to be in the same directory
        
@@ -40,7 +40,7 @@ Files: Both genome fasta files, both set of protein sequences for entire genome 
        Help:
        python Compare_Genome_2_Other_Genome_blastfmt6_ver1.0.py -h
   
-3) Keep the best overlapping linear global alignment
+3) Keep the best overlapping linear global homology searches
 
        Note: Requires the python script GeneralOverlap.py to be in the same directory
        
@@ -50,12 +50,12 @@ Files: Both genome fasta files, both set of protein sequences for entire genome 
        Help:
        python Filter_Linear_Alignment.v1.0.py -h
        
-4) Align all protein sequences from genome1 to genome2
+4) Homology searches between all protein sequences from genome1 to genome2
 
        Example:
        blastp -db genome1 -query genome2.faa -max_target_seqs 3 -max_hsps 20 -evalue 0.01 -outfmt 6 -num_threads 10 -out genome1_vs_genome2.protein.aln
      
-5) Filter protein alignments
+5) Filter protein homology searches
 
        Example:
        python Filter_Alignments_Blast_Fmt6_Protein_ver1.0.py -aln_file genome1_vs_genome2.protein.aln -fastas genome1.faa -fastaq genome2.faa -min_per 80 \
